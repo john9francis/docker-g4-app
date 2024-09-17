@@ -28,6 +28,24 @@ G4VPhysicalVolume* DetConstruction::Construct(){
     0                     // copy number
   );
 
+
+  // add a water detector
+  G4Material *water = G4NistManager::Instance()->FindOrBuildMaterial("G4_Water");
+
+  G4Box *solidDetector = new G4Box("solidDetector", 10 * cm, 10 * cm, 1 * cm);
+
+  G4LogicalVolume *logicDetector = new G4LogicalVolume(solidDetector, water, "logicDetector");
+
+  new G4PVPlacement(
+    nullptr,
+    G4ThreeVector(),
+    logicDetector,
+    "physDetector",
+    logicWorld,
+    false,
+    0
+  );
+
   return physWorld;
 }
 
