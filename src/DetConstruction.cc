@@ -30,7 +30,7 @@ G4VPhysicalVolume* DetConstruction::Construct(){
 
 
   // add a water detector
-  G4Material *water = G4NistManager::Instance()->FindOrBuildMaterial("G4_Water");
+  G4Material *water = G4NistManager::Instance()->FindOrBuildMaterial("G4_WATER");
 
   G4Box *solidDetector = new G4Box("solidDetector", 10 * cm, 10 * cm, 1 * cm);
 
