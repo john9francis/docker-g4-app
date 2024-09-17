@@ -1,6 +1,6 @@
 // Entrypoint for docker-g4-app
 
-#include <iostream>
+#include "G4ios.hh"
 #include "G4RunManagerFactory.hh"
 #include "QGSP_BERT.hh"
 
@@ -13,7 +13,7 @@ int main(){
   // run manager
   auto runManager = G4RunManagerFactory::CreateRunManager();
 
-  std::cout << "Hello from the Geant4 world!" << std::endl;
+  G4cout << "Hello from the Geant4 world!" << G4endl;
   
   // action initialization
   runManager->SetUserInitialization(new ActionInit());
@@ -21,7 +21,7 @@ int main(){
   // physics list
   runManager->SetUserInitialization(new QGSP_BERT());
 
-  
+
   // primary generator action
   // detector construction
 
