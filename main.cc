@@ -3,6 +3,7 @@
 #include "G4ios.hh"
 #include "G4RunManagerFactory.hh"
 #include "QGSP_BERT.hh"
+#include "G4UImanager.hh"
 
 #include "ActionInit.hh"
 #include "DetConstruction.hh"
@@ -22,11 +23,18 @@ int main(){
   // detector construction
   runManager->SetUserInitialization(new DetConstruction());
 
-  // action initialization w/ primary gen action
+  // action initialization w/ primary gen action & stepping action
   runManager->SetUserInitialization(new ActionInit());
 
+  // initialize G4 kernel
+  runManager->Initialize();
 
-  // stepping action
+  // run a couple of particles
+  int numberOfEvent = 3;
+  runManager->BeamOn(numberOfEvent);
+
+  // job termination
+  delete runManager;
 
   return 0;
 }
